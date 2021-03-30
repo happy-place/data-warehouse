@@ -1,0 +1,22 @@
+# spark 日志收集
+POST http://localhost:8081/applog1
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
+
+###
+
+# flink 日志收集
+POST http://localhost:8081/applog2
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
+
+###
+GET http://localhost:8081/applog2?param=%7B%22common%22%3A%7B%22ar%22%3A%22110000%22%2C%22ba%22%3A%22vivo%22%2C%22ch%22%3A%22wandoujia%22%2C%22is_new%22%3A%220%22%2C%22md%22%3A%22vivo+iqoo3%22%2C%22mid%22%3A%22mid_14%22%2C%22os%22%3A%22Android+10.0%22%2C%22uid%22%3A%2218%22%2C%22vc%22%3A%22v2.1.134%22%7D%2C%22start%22%3A%7B%22entry%22%3A%22icon%22%2C%22loading_time%22%3A5486%2C%22open_ad_id%22%3A20%2C%22open_ad_ms%22%3A9514%2C%22open_ad_skip_ms%22%3A0%7D%2C%22ts%22%3A1616156303000%7D HTTP/1.1

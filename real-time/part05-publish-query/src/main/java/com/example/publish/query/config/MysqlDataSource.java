@@ -1,0 +1,88 @@
+package com.example.publish.query.config;
+
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+
+import javax.sql.DataSource;
+
+@Configuration//注解到spring容器中
+@MapperScan(basePackages = MysqlDataSource.PACKAGE, sqlSessionFactoryRef = MysqlDataSource.SESSION_FACTORY_REF)
+public class MysqlDataSource {
+
+    static final String PACKAGE = "com.example.publish.query.mapper.mysql";
+    private static final String MAPPER_LOCATION = "classpath:mapper/mysql/*.xml";
+    static final String SESSION_FACTORY_REF = "mysqlSqlSessionFactory";
+
+//    @Value("clickhouse.datasource.jdbcUrl")
+//    private String jdbcUrl;
+//
+//    @Value("clickhouse.datasource.driverClassName")
+//    private String driverClassName;
+//
+//    @Value("clickhouse.datasource.username")
+//    private String username;
+//
+//    @Value("clickhouse.datasource.password")
+//    private String password;
+
+    /**
+     * 返回mysql数据库的数据源
+     * @return
+     */
+    @Bean(name="mysqlSource")
+    @ConfigurationProperties(prefix = "mysql.datasource")
+    public DataSource dataSource(){
+        return DataSourceBuilder.create()
+//                .driverClassName(driverClassName)
+//                .url(jdbcUrl)
+//                .username(username)
+//                .password(password)
+                .build();
+    }
+
+    /**
+     * 返回mysql数据库的会话工厂
+     * @param ds
+     * @return
+     * @throws Exception
+     */
+    @Bean(name = "mysqlSqlSessionFactory")
+    public SqlSessionFactory sqlSessionFactory(@Qualifier("mysqlSource") DataSource ds) throws Exception{
+        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        bean.setDataSource(ds);
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MysqlDataSource.MAPPER_LOCATION));
+        return bean.getObject();
+    }
+
+    /**
+     * 返回mysql数据库的会话模板
+     * @param sessionFactory
+     * @return
+     * @throws Exception
+     */
+    @Bean(name = "mysqlSqlSessionTemplate")
+    public SqlSessionTemplate sqlSessionTemplate(@Qualifier("mysqlSqlSessionFactory") SqlSessionFactory sessionFactory) throws  Exception{
+        return  new SqlSessionTemplate(sessionFactory);
+    }
+
+    /**
+     * 返回mysql数据库的事务
+     * @param ds
+     * @return
+     */
+    @Bean(name = "mysqlTransactionManager")
+    public DataSourceTransactionManager transactionManager(@Qualifier("mysqlSource") DataSource ds){
+        return new DataSourceTransactionManager(ds);
+    }
+}
+

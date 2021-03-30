@@ -1,0 +1,2 @@
+{"common":{"ar":"230000","ba":"Xiaomi","ch":"xiaomi","is_new":"1","md":"Xiaomi Mix2 ","mid":"mid_19","os":"Android 11.0","uid":"30","vc":"v2.1.134"},
+"start":{"entry":"notice","loading_time":16128,"open_ad_id":7,"open_ad_ms":5487,"open_ad_skip_ms":1247},"ts":1616158436000}

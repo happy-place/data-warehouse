@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.publish.query.mapper.mysql.TrademarkStatMapper">
+
+    <select id="selectTradeSum"  resultMap="trademarkSumMap">
+        select
+            trademark_id,trademark_name, sum(amount) amount
+        from
+            trademark_amount_stat
+        where
+            stat_time &gt; #{start_date}  and stat_time &lt; #{end_date}
+        group by trademark_id,trademark_name
+        order by sum(amount) desc
+        limit #{topN};
+
+    </select>
+
+    <resultMap id="trademarkSumMap" type="java.util.Map" autoMapping="true">
+    </resultMap>
+
+</mapper>

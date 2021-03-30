@@ -1,0 +1,2 @@
+{"display_type":"recommend","page_id":"good_detail","item":"2","item_type":"sku_id","pos_id":3,"order":3}
+{"display_type":"query","page_id":"good_detail","item":"1","item_type":"sku_id","pos_id":2,"order":4}

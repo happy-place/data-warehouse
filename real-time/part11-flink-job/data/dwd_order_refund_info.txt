@@ -1,0 +1,2 @@
+{"refund_type":"1502","create_time":"2021-03-27 15:49:25","user_id":31930,"refund_num":1,"refund_reason_type":"1301","refund_amount":4488.00,"sku_id":16,"id":34452,"order_id":161287,"refund_reason_txt":"退款原因具体：8308563961"}
+{"refund_type":"1501","create_time":"2021-03-27 15:49:25","user_id":32172,"refund_num":1,"refund_reason_type":"1306","refund_amount":2899.00,"sku_id":20,"id":34455,"order_id":161300,"refund_reason_txt":"退款原因具体：0214576047"}

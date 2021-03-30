@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.publish.query.mapper.clickhouse.OrderWideMapper">
+    <select id="selectOrderAmountTotal" resultType="java.math.BigDecimal">
+        select
+            sum(final_total_amount) sum_amount
+        from
+            t_order_wide
+        where dt=#{date}
+    </select>
+
+    <select id="selectOrderAmountHourMap" resultMap="orderAmountHour">
+        select
+            toHour(create_time) hr ,sum(final_total_amount) am
+        from
+            t_order_wide
+        where dt=#{date}
+        group by toHour(create_time)
+    </select>
+
+    <resultMap id="orderAmountHour" type="java.util.Map" autoMapping="true">
+    </resultMap>
+
+    <!--
+     ${} 先取值在编译，#{}先编译再取值，因此前者可以传数据库对象，如：列名、表明；用于特殊场景写拼接sql，需要提防sql注入，后者可以接受常规参数，能够防止sql注入
+
+    -->
+
+</mapper>

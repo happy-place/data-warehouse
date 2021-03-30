@@ -1,0 +1,63 @@
+GET http://localhost:8070/ping
+
+###
+
+GET http://localhost:8070/realtime-total?date=2021-03-16
+
+###
+
+GET http://localhost:8070/realtime-hour?id=dau&date=2021-03-16
+
+###
+
+#GET http://localhost:8070/realtime-hour?id=order_amount&date=2021-03-16
+#
+####
+#
+#GET http://localhost:8070/trademark-sum?start_date=2021-03-17&end_date=2021-03-18&topN=3
+#
+####
+
+GET http://localhost:8070/trademark-datav?start_date=2021-03-17&end_date=2021-03-18&topN=3
+
+###
+
+GET http://localhost:8070/api/sugar/gmv
+
+###
+
+GET http://localhost:8070/api/sugar/gmv?date=20210328
+
+###
+
+GET http://localhost:8070/api/sugar/spu?date=20210328
+
+###
+
+GET http://localhost:8070/api/sugar/category3?date=20210328
+
+###
+
+GET http://localhost:8070/api/sugar/trademark?date=20210328
+
+###
+
+GET http://localhost:8070/api/sugar/trademark?date=20210328
+
+###
+
+GET http://localhost:8070/api/sugar/province?date=20210329
+
+###
+
+GET http://localhost:8070/api/sugar/visitor?date=20210328
+
+###
+
+GET http://localhost:8070/api/sugar/hr?date=20210328
+
+###
+
+GET http://localhost:8070/api/sugar/keyword?date=20210329
+
+###
